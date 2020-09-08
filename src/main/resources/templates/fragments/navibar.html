@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="navbar">
+    <ul>
+        <li>
+            <a href="#" th:href="@{/}">Home</a>
+        </li>
+        <li>
+            <a href="#" th:href="@{/visitor/getAllVisitors}">Show visitors</a>
+        </li>
+        <li>
+            <a href="#" th:href="@{/visitor/add}">Add visitor</a>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

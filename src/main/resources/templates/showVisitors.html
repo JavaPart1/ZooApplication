@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Show Visitors</title>
+    <link rel="stylesheet" href="Zoostyles.css">
+
+</head>
+<body>
+<h1>Show Visitors</h1>
+<div th:insert="fragments/navibar :: navbar"></div>
+
+<table border="1">
+    <tr>
+        <th>Visitor Type</th>
+        <th>Visitor Name</th>
+        <th colspan="2">Action</th>
+    </tr>
+    <tr th:each="visitor : ${visitors}">
+        <td th:text="${{visitor.visitorType}}">visitorTypes</td>
+        <td th:text="${{visitor.name}}">name</td>
+        <td>update</td>
+        <td><a th:href="@{/visitor/{name}/delete(name=${visitor.name})}">delete</a></td>
+    </tr>
+</table>
+
+
+</body>
+</html>

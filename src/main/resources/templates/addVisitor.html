@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Visitor</title>
+    <link rel="stylesheet" href="Zoostyles.css">
+</head>
+<body>
+<h1>Add Visitor</h1>
+<div th:insert="fragments/navibar :: navbar"></div>
+<form action="/visitor/add" method="post">
+    <label for="visitorType">VisitorType: </label>
+    <select id= "visitorType" name="visitorType" >
+        <option th:each="visitortype : ${visitortypes}"
+                th:text="${{visitortype}}">
+
+        </option>
+    </select>
+<!--    <input type="text" id="visitorType" name="visitorType" ><br>-->
+    <label for="visitorName">VisitorName: </label>
+    <input type="text" id="visitorName" name="name" ><br>
+    <input type="submit" value="save">
+</form>
+</body>
+</html>
