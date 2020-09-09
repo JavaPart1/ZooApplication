@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Visitor</title>
-    <link rel="stylesheet" href="Zoostyles.css">
+<!--    <link rel="stylesheet" th:href="@{/Zoostyles.css}">-->
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/bootstrap/css/bootstrap.min.css}"/></head>
 </head>
 <body>
 <h1>Add Visitor</h1>
 <div th:insert="fragments/navibar :: navbar"></div>
+<div class="container">
+    <a class="btn btn-primary" href="#" role="button">Link</a>
+
+    <button class="btn btn-primary" type="button" href="#">test</button>
+
+    <a class="btn btn-primary" type="button" href="#">test</a>
+
+</div>
+
 <form action="/visitor/add" method="post">
     <label for="visitorType">VisitorType: </label>
     <select id= "visitorType" name="visitorType" >
