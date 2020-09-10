@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Show Visitors</title>
+    <title>Show Tickets</title>
 <!--    <link rel="stylesheet" href="Zoostyles.css">-->
     <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
           th:href="@{/bootstrap/css/bootstrap.min.css}"/>
@@ -15,7 +15,7 @@
     </script>
 </head>
 <body th:attr="onload= ${success}? 'showAlert()': null ">
-<h1>Show Visitors</h1>
+<h1>Show Tickets</h1>
 <div th:insert="fragments/navibar :: navbar"></div>
 <div class="alert alert-warning" role="alert" th:if="${success}">
     Delete successful!
@@ -37,18 +37,17 @@
 
 <table border="1">
     <tr>
-        <th>Visitor Type</th>
-        <th>Visitor Name</th>
+        <th>Ticket</th>
+        <th>Original Price</th>
+        <th>Reduction Price</th>
         <th colspan="2">Action</th>
-        <th colspan="2">Tickets</th>
     </tr>
-    <tr th:each="visitor : ${visitors}">
-        <td th:text="${{visitor.visitorType}}">visitorTypes</td>
-        <td th:text="${{visitor.name}}">name</td>
-        <td><a th:href="@{/visitor/{id}/update(id=${visitor.id})}">update</a></td>
-        <td><a th:href="@{/visitor/{id}/delete(id=${visitor.id})}">delete</a></td>
-        <td><a th:href="@{/ticket/{id}/showticket(id=${visitor.id})}">show tickets</a></td>
-        <td><a th:href="@{/ticket/{id}/buyticket(id=${visitor.id})}">buy ticket</a></td>
+    <tr th:each="ticket : ${tickets}">
+        <td th:text="${{ticket.ticketName}}">ticketname</td>
+        <td th:text="${{ticket.originalPrice}}">ticketname</td>
+        <td th:text="${{ticket.reductionPrice}}">ticketname</td>
+        <td><a th:href="@{/ticket/{id}/update(id=${ticket.id})}">update</a></td>
+        <td><a th:href="@{/ticket/{id}/delete(id=${ticket.id})}">delete</a></td>
     </tr>
 </table>
 

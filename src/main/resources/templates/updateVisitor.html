@@ -3,14 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Visitor</title>
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
 <div th:insert="fragments/navibar :: navbar"></div>
 
-<form th:action="@{/visitor/{name}/edit(name=${visitor.name})}" method="post">
+<form th:action="@{/visitor/{id}/update(id=${visitor.id})}" method="post">
+<!--
+    <input type="text" id="name" name="name" th:value="${visitor.name}" >
     <input type="text" id="name" name="name" th:value="${visitor.name}" >
     <input type="submit" value="save">
+-->
+
+    <label for="visitorType">VisitorType: </label>
+    <select class="form-control" id= "visitorType" name="visitorType" th:value="${visitor.visitorType}">
+        <div >
+            <option th:each="visitortype : ${visitortypes}"
+                    th:text="${{visitortype}}"
+                    >
+
+            </option>
+        </div>
+<!--
+        <div th:unless="${visitor.visitorType}">
+            <option selected disabled>Select visitorType</option>
+            <option th:each="visitortype : ${visitortypes}"
+                    th:text="${{visitortype}}"
+                    th:value="${visitortype}">
+            </option>
+        </div>
+-->
+    </select>
+    <label for="visitorName">VisitorName: </label>
+    <input type="text" id="visitorName" name="name" th:value="${visitor.name}"><br>
+    <input type="submit" value="save">
 </form>
+
+
+<!--
+<label for="profession">Profession</label>
+<select class="form-control" id="profession" name="profession">
+    <div th:if="${employee.profession != null}">
+        <option th:each="profession : ${professions}"
+                th:text="${{profession.prettyName}}"
+                th:value="${profession}"
+                th:selected="${profession.prettyName == employee.profession.prettyName}">
+        </option>
+    </div>
+    <div th:unless="${employee.profession}">
+        <option selected disabled>Select profession</option>
+        <option th:each="profession : ${professions}"
+                th:text="${{profession.prettyName}}"
+                th:value="${profession}">
+        </option>
+    </div>
+</select>
+-->
 
 </body>
 </html>

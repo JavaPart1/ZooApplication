@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<nav th:fragment="navbar">
+<nav th:fragment="navbar" class="nav">
     <ul>
         <li>
             <a href="#" th:href="@{/}">Home</a>
@@ -15,6 +15,12 @@
         </li>
         <li>
             <a href="#" th:href="@{/visitor/add}">Add visitor</a>
+        </li>
+        <li>
+            <a href="#" th:href="@{/ticket/getAllTickets}">Show tickets</a>
+        </li>
+        <li>
+            <a href="#" th:href="@{/ticket/add}">Add ticket</a>
         </li>
     </ul>
 </nav>

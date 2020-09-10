@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Visitor</title>
+    <title>Add Ticket</title>
 <!--    <link rel="stylesheet" th:href="@{/Zoostyles.css}">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -12,20 +12,24 @@
 <!--          th:href="@{/bootstrap/css/bootstrap.min.css}"/></head>-->
 </head>
 <body>
-<h1>Add Visitor</h1>
+<h1>Add Ticket</h1>
 <div th:insert="fragments/navibar :: navbar"></div>
+<!--<div class="container">
+    <a class="btn btn-primary" href="#" role="button">Link</a>
 
-<form action="/visitor/add" method="post">
-    <label for="visitorType">VisitorType: </label>
-    <select id= "visitorType" name="visitorType" >
-        <option th:each="visitortype : ${visitortypes}"
-                th:text="${{visitortype}}">
+    <button class="btn btn-primary" type="button" href="#">test</button>
 
-        </option>
-    </select>
-<!--    <input type="text" id="visitorType" name="visitorType" ><br>-->
-    <label for="visitorName">VisitorName: </label>
-    <input type="text" id="visitorName" name="name" ><br>
+    <a class="btn btn-primary" type="button" href="#">test</a>
+
+</div>-->
+
+<form action="/ticket/add" class="form-group" method="post">
+    <label for="ticketName">Ticket: </label>
+    <input type="text" id="ticketName" name="ticketName" ><br>
+    <label for="originalprice">Original Price: </label>
+    <input type="number" step="0.01"  id="originalprice" name="originalPrice" ><br>
+    <label for="reductionprice">Reduction Price: </label>
+    <input type="number" step="0.01" id="reductionprice" name="reductionPrice" ><br>
     <input type="submit" class="btn btn-outline-primary" value="save">
 </form>
 </body>

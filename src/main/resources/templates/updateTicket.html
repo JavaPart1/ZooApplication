@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Ticket</title>
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:insert="fragments/navibar :: navbar"></div>
+<h1>Update Ticket</h1>
+<form th:action="@{/ticket/{id}/update(id=${ticket.id})}" method="post">
+    <label for="ticketName">Ticket: </label>
+    <input type="text" id="ticketName" name="ticketName" th:value="${ticket.ticketName}"><br>
+    <label for="originalprice">Original Price: </label>
+    <input type="number" step="0.01" id="originalprice" name="originalPrice" th:value="${ticket.originalPrice}"><br>
+    <label for="reductionprice">Reduction Price: </label>
+    <input type="number" step="0.01" id="reductionprice" name="reductionPrice" th:value="${ticket.reductionPrice}"><br>
+    <input type="submit" value="save">
+</form>
+
+</body>
+</html>

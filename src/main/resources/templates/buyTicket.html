@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Ticket</title>
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<h1>Buy Ticket</h1>
+<div th:insert="fragments/navibar :: navbar"></div>
+<form th:action="@{/ticket/{id}/buyticket(id=${visitor.id})}" class="form-group" method="post">
+    <div>Visitor type:
+        <span th:text="${visitor.visitorType}">Visitor type
+        </span>
+        Visitor name:
+        <span th:text="${visitor.name}">Visitor name
+        </span>
+    </div>
+    <br>
+    <fieldset>
+        <legend>Choose a ticket !</legend>
+        <div class="radiobuttons" th:each="ticket : ${tickets}">
+            <input type="radio" th:id="${ticket.id}" th:field="*{selection.id}" th:value="${ticket.id}" />
+            <label th:for="${ticket.id}" th:text="${ticket.ticketName}">Wireframe</label>
+
+        </div>
+
+    </fieldset>
+
+
+    <input type="submit" class="btn btn-outline-primary" value="save">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Visitor Tickets</title>
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<h1>Show Visitor Tickets</h1>
+<div th:insert="fragments/navibar :: navbar"></div>
+<div>Visitor type:
+    <span th:text="${visitor.visitorType}">Visitor type
+        </span>
+    Visitor name:
+    <span th:text="${visitor.name}">Visitor name
+        </span>
+</div>
+<br>
+<!--
+Ticket name:
+<span th:text="${tickets.ticketName}"> name </span>
+
+<span th:text="${tickets.originalPrice}"> name </span>
+-->
+
+<table border="1">
+    <tr>
+        <th>Ticket</th>
+        <th>Original Price</th>
+        <th>Reduction Price</th>
+    </tr>
+    <tr th:each="ticket : ${tickets}">
+        <td th:text="${{ticket.ticketName}}">ticketname</td>
+        <td th:text="${{ticket.originalPrice}}">ticketname</td>
+        <td th:text="${{ticket.reductionPrice}}">ticketname</td>
+    </tr>
+</table>
+
+
+
+</body>
+</html>

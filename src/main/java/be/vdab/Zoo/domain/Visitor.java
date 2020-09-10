@@ -12,6 +12,7 @@ public class Visitor extends BaseEntity implements Serializable {
     private String name;
     private Ticket ticket;
     private List<Address> address;
+    private List<Ticket> ticketList;
 
     public Visitor(VisitorType visitorType, String name) {
 

@@ -2,6 +2,7 @@ package be.vdab.Zoo.controllers;
 
 import be.vdab.Zoo.domain.Visitor;
 import be.vdab.Zoo.domain.enums.VisitorType;
+import be.vdab.Zoo.exceptions.VisitorException;
 import be.vdab.Zoo.services.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/visitor")
@@ -34,23 +38,46 @@ public class VisitorController {
 */
 
     @RequestMapping(value = "/getAllVisitors", method = RequestMethod.GET)
-    public String getAllVisitors(Model model){
+    public String getAllVisitors(Model model) throws VisitorException {
         model.addAttribute("visitors",manager.getAllVisitores());
         return "showVisitors";
     }
 
-    @GetMapping("/{name}/delete")
-    public ModelAndView delete(@PathVariable("name") String name) {
-        manager.deleteByName(name);
+    @GetMapping("/{id}/update")
+    public ModelAndView showUpdatePage(@PathVariable("id") int id, ModelMap modelMap) throws VisitorException {
+        modelMap.addAttribute("visitor", manager.getVisitorById(id));
+        modelMap.addAttribute("visitortypes", VisitorType.values());
+        //modelMap.addAttribute("professions", employeeService.getProfessions());
+        return new ModelAndView("updateVisitor", modelMap);
+    }
+
+    @PostMapping("/{id}/update")
+    public ModelAndView save(@PathVariable("id") int id, @ModelAttribute Visitor visitor) throws SQLException {
+        manager.updateVisitor(visitor);
         return new ModelAndView("redirect:/visitor/getAllVisitors");
     }
 
+    @GetMapping("/{id}/delete")
+    public ModelAndView delete(@PathVariable("id") int id) throws SQLException {
+        manager.deleteVisitorById(id);
+        return new ModelAndView("redirect:/visitor/getAllVisitors");
+    }
+
+    /*
     @GetMapping("/{id}/delete")
     public ModelAndView delete(@PathVariable("id") int id, ModelMap modelMap) {
 //        employeeService.deleteById(id);
         modelMap.addAttribute("succes", true);
         return new ModelAndView("redirect:/employee/getAllEmployees");
     }
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView delete(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+        employeeService.deleteById(id);
+        redirectAttributes.addFlashAttribute("success", true);
+        return new ModelAndView("redirect:/employee/getAllEmployees");
+    }
+*/
 
 
 
@@ -65,9 +92,9 @@ public class VisitorController {
     }
 
     @PostMapping("/add")
-    public ModelAndView addVisitor(@ModelAttribute("visitor") Visitor employeeVO,
-                                   ModelMap modelMap){
-        manager.addVisitor(employeeVO);
+    public ModelAndView addVisitor(@ModelAttribute("visitor") Visitor nwVisitor,
+                                   ModelMap modelMap) throws SQLException, VisitorException {
+        manager.addVisitor(nwVisitor);
         return new ModelAndView("redirect:/visitor/getAllVisitors");
     }
 
